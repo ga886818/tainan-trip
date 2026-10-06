@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>古都小旅行｜台南兩天一夜</title>
+  <style>
+    :root {
+      --ink: #2f2a25;
+      --muted: #746b63;
+      --cream: #fffaf1;
+      --paper: #ffffff;
+      --terracotta: #c9674d;
+      --gold: #e6ad55;
+      --line: #eadfd2;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--cream);
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      line-height: 1.7;
+    }
+
+    .page {
+      width: min(100% - 32px, 720px);
+      margin: 0 auto;
+      padding: 28px 0 42px;
+    }
+
+    header {
+      padding: 10px 0 22px;
+      color: var(--ink);
+      background: transparent;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      margin: 0 0 6px;
+      color: var(--terracotta);
+      font-size: 0.9rem;
+      letter-spacing: 0.14em;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Noto Serif TC", "Songti TC", serif;
+      font-size: clamp(2rem, 9vw, 3.3rem);
+      line-height: 1.2;
+      letter-spacing: 0.05em;
+    }
+
+    .intro {
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .day {
+      margin-top: 26px;
+    }
+
+    .day-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 12px;
+      font-family: Georgia, "Noto Serif TC", "Songti TC", serif;
+      font-size: 1.45rem;
+      letter-spacing: 0.04em;
+    }
+
+    .day-title::before {
+      content: "";
+      width: 8px;
+      height: 28px;
+      border-radius: 99px;
+      background: var(--terracotta);
+    }
+
+    .schedule {
+      display: grid;
+      gap: 12px;
+    }
+
+    .stop {
+      position: relative;
+      padding: 15px 0 16px;
+      background: transparent;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .stop::before {
+      content: "";
+      display: none;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px 12px;
+      margin-bottom: 4px;
+      color: var(--terracotta);
+      font-size: 0.94rem;
+      font-weight: 700;
+    }
+
+    .meta span:first-child::before { content: "⏰ "; }
+    .meta span:last-child::before { content: "📍 "; }
+
+    h3 {
+      margin: 0 0 4px;
+      font-family: Georgia, "Noto Serif TC", "Songti TC", serif;
+      font-size: 1.15rem;
+    }
+
+    .stop p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    footer {
+      margin-top: 28px;
+      padding: 15px 17px;
+      color: var(--muted);
+      background: transparent;
+      border-top: 1px solid var(--line);
+      font-size: 0.9rem;
+    }
+
+    @media (min-width: 560px) {
+      .page { padding-top: 44px; }
+      .stop { padding: 18px 20px 18px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <p class="eyebrow">FRIENDS' MINI TRIP · 小安／小晴／阿宇</p>
+      <h1>古都小旅行</h1>
+      <p class="intro">台南兩天一夜｜慢慢走、好好吃，和朋友一起感受台南的老派浪漫。</p>
+    </header>
+
+    <section class="day" aria-labelledby="day-one">
+      <h2 class="day-title" id="day-one">第一天｜古城散步與夜市</h2>
+      <div class="schedule">
+        <article class="stop">
+          <div class="meta"><span>09:30–11:00</span><span>示意店家：府城早午餐</span></div>
+          <h3>早餐：府城早午餐</h3>
+          <p>先用一份台式早午餐暖胃，開啟輕鬆的台南散步日。</p>
+        </article>
+        <article class="stop">
+          <div class="meta"><span>11:15–13:00</span><span>赤崁樓</span></div>
+          <h3>赤崁樓與周邊老街</h3>
+          <p>走進古蹟看紅磚院落，再沿著巷弄尋找小店和老房子。</p>
+        </article>
+        <article class="stop">
+          <div class="meta"><span>14:00–17:00</span><span>示意店家：安平小旅宿</span></div>
+          <h3>入住與安平散步</h3>
+          <p>放下行李後到安平樹屋、老街一帶走走，享受午後海風。</p>
+        </article>
+        <article class="stop">
+          <div class="meta"><span>18:00–21:00</span><span>示意店家：花園夜市</span></div>
+          <h3>晚餐：夜市吃一圈</h3>
+          <p>大家分頭買喜歡的小吃，最後集合分享戰利品。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="day" aria-labelledby="day-two">
+      <h2 class="day-title" id="day-two">第二天｜文藝街區與回程</h2>
+      <div class="schedule">
+        <article class="stop">
+          <div class="meta"><span>08:30–10:00</span><span>示意店家：阿嬤手作牛肉湯</span></div>
+          <h3>早餐：台南牛肉湯</h3>
+          <p>用一碗熱騰騰的牛肉湯補充元氣，準備迎接第二天。</p>
+        </article>
+        <article class="stop">
+          <div class="meta"><span>10:30–12:30</span><span>藍晒圖文創園區</span></div>
+          <h3>藍晒圖與巷弄小店</h3>
+          <p>拍拍清新的街景與裝置藝術，也預留時間逛逛選物小店。</p>
+        </article>
+        <article class="stop">
+          <div class="meta"><span>13:00–15:00</span><span>示意店家：府城甜點室</span></div>
+          <h3>午餐與甜點休息</h3>
+          <p>找間舒服的店吃午餐、喝咖啡，順便整理旅程照片。</p>
+        </article>
+        <article class="stop">
+          <div class="meta"><span>15:30–17:00</span><span>孔廟文化園區</span></div>
+          <h3>孔廟周邊收尾散步</h3>
+          <p>在綠蔭與老街道間慢慢走，買份伴手禮後準備踏上回程。</p>
+        </article>
+      </div>
+    </section>
+
+    <footer>小提醒：店名與時間目前都是示意版本，出發前再一起確認實際營業時間與交通安排。</footer>
+
+    <section class="day" aria-labelledby="before-trip">
+      <h2 class="day-title" id="before-trip">行前提醒</h2>
+      <div class="schedule">
+        <article class="stop">
+          <h3>天氣</h3>
+          <p>示意：晴時多雲，氣溫約 24–30°C，午後可能有短暫雨。</p>
+        </article>
+        <article class="stop">
+          <h3>要帶的東西</h3>
+          <p>示意：雨具、水壺、行動電源、防曬用品與好走的鞋子。</p>
+        </article>
+        <article class="stop">
+          <h3>集合時間</h3>
+          <p>示意：第一天上午 09:00，台南火車站前站出口集合。</p>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

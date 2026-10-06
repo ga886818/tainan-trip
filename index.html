@@ -11,22 +11,19 @@
   <meta name="description" content="忘記去哪就來看看~">
   <style>
     :root {
-      --ink: #2f2a25;
-      --muted: #746b63;
-      --cream: #fffaf1;
-      --paper: #ffffff;
-      --terracotta: #c9674d;
-      --gold: #e6ad55;
-      --line: #eadfd2;
+      --main-color: #b8664d;
+      --background-color: #fbf7ef;
+      --text-color: #26332f;
     }
 
     * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      color: var(--ink);
-      background: var(--cream);
+      color: var(--text-color);
+      background: var(--background-color);
       font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      font-size: 17px;
       line-height: 1.7;
     }
 
@@ -36,16 +33,23 @@
       padding: 28px 0 42px;
     }
 
+    .cover {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 0 0 24px;
+    }
+
     header {
       padding: 10px 0 22px;
-      color: var(--ink);
+      color: var(--text-color);
       background: transparent;
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid var(--main-color);
     }
 
     .eyebrow {
       margin: 0 0 6px;
-      color: var(--terracotta);
+      color: var(--main-color);
       font-size: 0.9rem;
       letter-spacing: 0.14em;
     }
@@ -60,7 +64,8 @@
 
     .intro {
       margin: 9px 0 0;
-      color: var(--muted);
+      color: var(--text-color);
+      opacity: 0.82;
       font-size: 1rem;
     }
 
@@ -90,7 +95,7 @@
       width: 8px;
       height: 28px;
       border-radius: 99px;
-      background: var(--terracotta);
+      background: var(--main-color);
     }
 
     .schedule {
@@ -103,7 +108,7 @@
       padding: 15px 0 16px;
       background: transparent;
       border: 0;
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid var(--main-color);
       border-radius: 0;
       box-shadow: none;
     }
@@ -118,7 +123,7 @@
       flex-wrap: wrap;
       gap: 7px 12px;
       margin-bottom: 4px;
-      color: var(--terracotta);
+      color: var(--main-color);
       font-size: 0.94rem;
       font-weight: 700;
     }
@@ -134,16 +139,18 @@
 
     .stop p {
       margin: 0;
-      color: var(--muted);
+      color: var(--text-color);
+      opacity: 0.82;
       font-size: 0.98rem;
     }
 
     footer {
       margin-top: 28px;
       padding: 15px 17px;
-      color: var(--muted);
+      color: var(--text-color);
+      opacity: 0.82;
       background: transparent;
-      border-top: 1px solid var(--line);
+      border-top: 1px solid var(--main-color);
       font-size: 0.9rem;
     }
 
@@ -155,6 +162,7 @@
 </head>
 <body>
   <main class="page">
+    <img class="cover" src="images/cover.webp" alt="兩位朋友在台南古城散步">
     <header>
       <p class="eyebrow">FRIENDS' MINI TRIP · 小安／小晴／阿宇</p>
       <h1>古都小旅行</h1>

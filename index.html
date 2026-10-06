@@ -218,6 +218,12 @@
       font-weight: 700;
     }
 
+    .close-poll-panel {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--main-color);
+    }
+
     @media (min-width: 560px) {
       .page { padding-top: 44px; }
       .stop { padding: 18px 20px 18px 24px; }
@@ -249,6 +255,15 @@
       </form>
       <p class="vote-status" id="vote-status" role="status" aria-live="polite"></p>
       <ul class="vote-counts" id="vote-counts" aria-label="各選項票數"></ul>
+      <div class="close-poll-panel">
+        <h3>結束投票（主揪用）</h3>
+        <form class="vote-form" id="close-poll-form">
+          <label for="poll-secret">主揪密語</label>
+          <input id="poll-secret" name="poll-secret" type="password" required placeholder="請輸入密語">
+          <button type="submit">結束投票</button>
+        </form>
+        <p class="vote-status" id="close-poll-status" role="status" aria-live="polite"></p>
+      </div>
     </section>
 
     <section class="day" aria-labelledby="day-one">
@@ -328,6 +343,8 @@
     const SUPABASE_URL = "https://exccecqtlfjpyaegsauq.supabase.co";
     const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_yvVynzmbJKMJMtSDhmlgCg_NN1LS5f-";
     const VOTES_ENDPOINT = `${SUPABASE_URL}/rest/v1/dinner_votes`;
+    const POLL_STATUS_ENDPOINT = `${SUPABASE_URL}/rest/v1/poll_status?id=eq.1&select=is_closed`;
+    const CLOSE_POLL_ENDPOINT = `${SUPABASE_URL}/functions/v1/close-poll`;
     const VOTE_OPTIONS = ["火鍋", "合菜", "日料"];
     const requestHeaders = {
       apikey: SUPABASE_PUBLISHABLE_KEY,
@@ -339,6 +356,9 @@
     const choiceInput = document.querySelector("#choice");
     const voteStatus = document.querySelector("#vote-status");
     const voteCounts = document.querySelector("#vote-counts");
+    const closePollForm = document.querySelector("#close-poll-form");
+    const pollSecretInput = document.querySelector("#poll-secret");
+    const closePollStatus = document.querySelector("#close-poll-status");
 
     function showVoteCounts(rows) {
       const counts = Object.fromEntries(VOTE_OPTIONS.map((option) => [option, 0]));
@@ -354,6 +374,20 @@
       const response = await fetch(`${VOTES_ENDPOINT}?select=choice`, { headers: requestHeaders });
       if (!response.ok) throw new Error("無法讀取票數");
       showVoteCounts(await response.json());
+    }
+
+    async function loadPollStatus() {
+      const response = await fetch(POLL_STATUS_ENDPOINT, { headers: requestHeaders });
+      if (!response.ok) throw new Error("無法讀取投票狀態");
+      const rows = await response.json();
+      return rows[0]?.is_closed === true;
+    }
+
+    function renderPollState(isClosed) {
+      if (!isClosed) return;
+      voteForm.hidden = true;
+      voteStatus.textContent = "投票已結束";
+      document.querySelector("#dinner-vote-title").textContent = "投票已結束";
     }
 
     voteForm.addEventListener("submit", async (event) => {
@@ -378,7 +412,32 @@
       }
     });
 
-    loadVotes().catch(() => {
+    closePollForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const button = closePollForm.querySelector("button");
+      button.disabled = true;
+      closePollStatus.textContent = "確認中…";
+      try {
+        const response = await fetch(CLOSE_POLL_ENDPOINT, {
+          method: "POST",
+          headers: { ...requestHeaders, "Content-Type": "application/json" },
+          body: JSON.stringify({ secret: pollSecretInput.value })
+        });
+        if (!response.ok) throw new Error("密語錯誤，投票尚未結束。" );
+        pollSecretInput.value = "";
+        closePollStatus.textContent = "投票已結束。";
+        renderPollState(true);
+        await loadVotes();
+      } catch (error) {
+        closePollStatus.textContent = error.message;
+      } finally {
+        button.disabled = false;
+      }
+    });
+
+    Promise.all([loadPollStatus(), loadVotes()]).then(([isClosed]) => {
+      renderPollState(isClosed);
+    }).catch(() => {
       voteStatus.textContent = "目前無法載入票數，請稍後重新整理。";
     });
   </script>
